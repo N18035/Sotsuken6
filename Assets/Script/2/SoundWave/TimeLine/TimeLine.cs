@@ -52,9 +52,9 @@ public class TimeLine : MonoBehaviour
     }
 
     public void GetBPM(){
-        BPM = music.mytempo;
+        BPM = music.myTempo;
 
-        beat =  60f / music.mytempo;
+        beat =  60f / music.myTempo;
 
         //音源の小節数
         //1足すのは最初の0を追加分

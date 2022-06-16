@@ -42,7 +42,7 @@ public class SeekBar : MonoBehaviour
     {
         //音楽の進行に合わせてシークバーを動かす
         // 今の再生時間 / 総再生時間 * 100 = 今全体の何％にいるか
-        if(playing)     sSlider.value = ac.time / musiclong * 100;
+        if(ac.isPlaying)     sSlider.value = ac.time / musiclong * 100;
     }
  
 }

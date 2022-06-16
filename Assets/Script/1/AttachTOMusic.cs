@@ -16,12 +16,12 @@ public class AttachTOMusic : MonoBehaviour
     public void Beatchange3or4(){
         if(DDown.value==1){
             //3はく
-            music.mybar=9;
-            music.mybeat=3;
+            music.myBar=9;
+            music.myBeat=3;
         }else if(DDown.value==0){
             //4はく
-            music.mybar=16;
-            music.mybeat=4;
+            music.myBar=16;
+            music.myBeat=4;
         }else{
             Debug.LogError("ドロップダウンがおかしいよ");
         }
@@ -41,7 +41,7 @@ public class AttachTOMusic : MonoBehaviour
     }
 
     private void BPMsetup(){
-        music.mytempo = (int)BPMChanger.value;
+        music.myTempo = (int)BPMChanger.value;
     }
 
     private void Delaysetup(){

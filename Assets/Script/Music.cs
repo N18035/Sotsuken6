@@ -12,10 +12,12 @@ using System.Collections.Generic;
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
-	public int mystart=0;//全体の進行のデータだから0からでOK
-	public int mybeat=3;
-	public int mybar=9;
-	public int mytempo=60;
+	//全体の進行のデータだから0からでOK
+	public int myStart=0;
+	
+	public int myBeat=3;
+	public int myBar=9;
+	public int myTempo=60;
 
 	//1024行目にTimingクラス
 
@@ -156,11 +158,15 @@ public class Music : MonoBehaviour
 	public static double LagUnit { get { return Current_.LagUnit_; } }
 	/// <summary>
 	/// sec / musicalUnit
+	/// 秒 / Unit
 	/// </summary>
 	public static double MusicTimeUnit { get { return Current_.musicTimeUnit_; } }
 	/// <summary>
 	/// current musical time based on MusicalTimeUnit
 	/// **warning** if CurrentSection.UnitPerBar changed, this is not continuous.
+	///MusicalTimeUnitに基づく現在の音楽時間
+	///CurrentSection.UnitPerBarが変更された場合の警告、これは連続的ではありません。
+	///MusicTimeの1つ分0.11111みたいなのが定義されてる？
 	/// </summary>
 	public static float MusicalTime { get { return Current_.MusicalTime_; } }
 	/// <summary>
@@ -259,6 +265,10 @@ public class Music : MonoBehaviour
 	/// this will only work when CreateSectionClips == true.
 	/// </summary>
 	public static bool IsTransitioning { get { return Current_.isTransitioning_; } }
+	/// <summary>
+	/// 自作メソッド。unitを返す
+	/// </summary>
+	public static int GetUnit {get {return Current_.just_.Unit;}}
 	#endregion
 
 	//ーーーーーーーーーーーbarやbeatが変わった時の判定のもの---------------------------------
@@ -632,7 +642,7 @@ public class Music : MonoBehaviour
 			Sections = new List<Section>();
 			// Sections.Add(new Section(0, 4, 16, 120));//590行目を!=にすると動く
 			// Sections.Add(new Section(0, 4, 16, mytempo));//スクリプトを変更するとAwakeで呼ばれる。デフォルトでは呼ばれない
-			Sections.Add(new Section(0, mybeat, mybar, mytempo));//上記に加えてハクも変更する
+			Sections.Add(new Section(0, myBeat, myBar, myTempo));//上記に加えてハクも変更する
 			// Debug.Log("Sections.countは:"+Sections.Count);
 
 			Sections[0].OnValidate(EntryPointSample);//92行目,starsampleを修正するOnvalidate。この時のstartsampleを参照して870で開始の処理を行っている
@@ -671,8 +681,6 @@ public class Music : MonoBehaviour
 		// 			Sections[i].LoopType = Section.ClipType.Loop;
 		// 	}
 		// }
-
-		Debug.Log("Onvalidate終了時、MusicList_の数は:"+MusicList_.Count);
 	}
 
 	void OnDestroy()//実質初期化の処理でしか使われていない

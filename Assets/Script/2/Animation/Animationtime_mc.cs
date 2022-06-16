@@ -181,7 +181,7 @@ public class Animationtime_mc : MonoBehaviour
 		//ここからAnimationclipのズレの計算--------------------
 
 		//時間（秒）＝60÷テンポ(BPM)×拍子(とりあえず4で固定)×小節数
-		float bartime = (60f /music.mytempo)*4f*(float)Animationtime[targetAnimationclipIndex];//AnimationClipの配列とAnimationtimeの配列は連動しているからこれで問題ないはず
+		float bartime = (60f /music.myTempo)*4f*(float)Animationtime[targetAnimationclipIndex];//AnimationClipの配列とAnimationtimeの配列は連動しているからこれで問題ないはず
 
 		//今の再生時間(s) - bar?のときの秒数
 		ATime = Music.AudioTimeSec - bartime;
